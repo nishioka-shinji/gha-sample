@@ -1,0 +1,13 @@
+name: Hello World to Slack
+on: [push]
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Send Message to Slack
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        ./scripts/slack_notify.sh $SLACK_WEBHOOK_URL "Hello, world!"

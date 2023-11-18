@@ -40,7 +40,7 @@ cat db/Schemafile
 cat db/Schemafile > db/Schemafile_backup
 
 git fetch origin main
-git checkout main
+git checkout -b main
 
 git branch --contains
 

@@ -2,7 +2,7 @@
 set -e
 
 error_handler() {
-    echo "エラーが発生したため処理を中断します。"
+    echo "エラーが発生したため処理を中断します。エラー発生箇所: $BASH_COMMAND"
     exit 1
 }
 

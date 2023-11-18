@@ -20,9 +20,10 @@ echo $BASE_PR_TITLE
 echo $BASE_PR_NUMBER
 echo $NEW_PR_TITLE
 
-read -d '' NEW_PR_BODY << EOF
+NEW_PR_BODY=$(cat <<EOF
 #$BASE_PR_NUMBER のPRからSchemafileを切り出した対応です
 EOF
+)
 
 git fetch
 git checkout $BASE_REPO

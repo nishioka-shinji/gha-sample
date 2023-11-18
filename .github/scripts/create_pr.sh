@@ -30,7 +30,7 @@ git checkout -b $NEW_REPO
 cat db/Schemafile_backup > db/Schemafile
 
 # db/Schemafile の状態を確認
-STATUS=$(git diff --quiet db/Schemafile)
+STATUS=$(git status db/Schemafile --porcelain)
 
 if [ -z "$STATUS" ]; then
     echo "db/Schemafile に変更はありません。処理を中断します。"

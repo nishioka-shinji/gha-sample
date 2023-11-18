@@ -16,6 +16,6 @@ jobs:
     - name: run
       run: |
         chmod +x ./.github/scripts/create_pr.sh
-        ./.github/scripts/create_pr.sh ${{ github.ref_name }} ${{ github.event.pull_request.title }} ${{ github.event.pull_request.number }}
+        ./.github/scripts/create_pr.sh ${{ github.head_ref }} ${{ github.event.pull_request.title }} ${{ github.event.pull_request.number }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -28,7 +28,9 @@ PR_LIST=$(
     gh pr list --search "head:$NEW_HEAD_REF" --json headRefName --jq ".[] | select(.headRefName == \"$NEW_HEAD_REF\")"
 )
 
+echo "==================="
 echo $PR_LIST
+echo "==================="
 
 git branch --contains
 # 余計なdiffがあると、ブランチ切り替え時にエラーになるため、一旦全ての変更を破棄する

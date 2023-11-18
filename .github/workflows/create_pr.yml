@@ -17,7 +17,7 @@ jobs:
       run: echo "New file for hoge branch" > hoge.txt
 
     - name: Get Current UNIX Time
-      run: echo "unix_time=$(date +%s)" >> $GITHUB_ENV
+      run: echo "UNIX_TIME=$(date +%s)" >> $GITHUB_ENV
 
     - name: Commit changes
       run: |

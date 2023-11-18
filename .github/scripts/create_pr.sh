@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+error_handler() {
+    echo "エラーが発生しました。エラー発生箇所: $BASH_COMMAND at line $LINENO"
+    exit 1
+}
+
+trap 'error_handler' ERR
+
 BASE_REPO="$1"
 NEW_REPO="${BASE_REPO}_schemafile"
 BASE_PR_TITLE="$2"

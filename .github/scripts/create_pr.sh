@@ -46,7 +46,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+git config --global user.name 'github-actions[bot]'
+git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 git commit -m "Schemafile切り出し"
 git push origin $NEW_REPO
 
-gh pr create --assignee @me --base master --title "$NEW_PR_TITLE" --body "$NEW_PR_BODY"
+gh pr create --assignee @me --base main --title "$NEW_PR_TITLE" --body "$NEW_PR_BODY"

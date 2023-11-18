@@ -8,28 +8,38 @@ error_handler() {
 
 trap 'error_handler' ERR
 
-BASE_REPO="$1"
-NEW_REPO="${BASE_REPO}_schemafile"
+BASE_HEAD_REF="$1"
 BASE_PR_TITLE="$2"
 BASE_PR_NUMBER="$3"
+NEW_HEAD_REF="${BASE_HEAD_REF}_schemafile"
 NEW_PR_TITLE="${BASE_PR_TITLE}（Schemafile切り出し）"
-
 NEW_PR_BODY=$(cat <<EOF
 #$BASE_PR_NUMBER のPRからSchemafileを切り出した対応です
 EOF
 )
 
-git fetch origin main
+BRANCH_IS_EXISTING=$(
+    git fetch origin $NEW_HEAD_REF &&
+    echo true ||
+    echo false
+)
+
+# 余計なdiffがあると、ブランチ切り替え時にエラーになるため、一旦全ての変更を破棄する
 git checkout .
 
 cat db/Schemafile > db/Schemafile_backup
 
+git fetch origin main
 git checkout main
-git checkout -b $NEW_REPO
+
+if [ "$BRANCH_IS_EXISTING" = true ]; then
+    git checkout $NEW_HEAD_REF
+else
+    git checkout -b $NEW_HEAD_REF
+fi
 
 cat db/Schemafile_backup > db/Schemafile
 
-# db/Schemafile の状態を確認
 STATUS=$(git status db/Schemafile --porcelain)
 
 if [ -z "$STATUS" ]; then
@@ -41,6 +51,6 @@ git add db/Schemafile
 git config --global user.name 'github-actions[bot]'
 git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 git commit -m "Schemafile切り出し"
-git push origin $NEW_REPO
+git push origin $NEW_HEAD_REF
 
 gh pr create --base main --title "$NEW_PR_TITLE" --body "$NEW_PR_BODY"

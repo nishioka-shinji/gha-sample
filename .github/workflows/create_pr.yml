@@ -19,8 +19,6 @@ jobs:
     - name: Commit changes
       run: |
         git switch -c hoge
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
         git add .
         git commit -m 'Add new file to hoge branch'
         git push -u origin hoge

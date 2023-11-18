@@ -2,7 +2,7 @@
 set -e
 
 error_handler() {
-    echo "エラーが発生しました。エラー発生箇所: $BASH_COMMAND at line $LINENO"
+    echo "エラーが発生したため処理を中断します。"
     exit 1
 }
 

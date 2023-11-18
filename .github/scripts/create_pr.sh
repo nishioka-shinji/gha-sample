@@ -18,7 +18,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-SCHEMA=$(cat db/Schemafile)
+cat db/Schemafile > db/Schemafile_backup
 
 git checkout master
 git pull
@@ -29,7 +29,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "$SCHEMA" > db/Schemafile
+cat db/Schemafile_backup > db/Schemafile
 
 # git status を実行し、db/Schemafile の状態を確認
 STATUS=$(git status db/Schemafile --porcelain)

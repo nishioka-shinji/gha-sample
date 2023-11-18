@@ -2,7 +2,7 @@
 set -e
 
 error_handler() {
-    echo "エラーが発生しました。エラー発生箇所: $BASH_COMMAND at line $LINENO"
+    echo "エラーが発生したため処理を中断します。"
     exit 1
 }
 
@@ -14,24 +14,15 @@ BASE_PR_TITLE="$2"
 BASE_PR_NUMBER="$3"
 NEW_PR_TITLE="${BASE_PR_TITLE}（Schemafile切り出し）"
 
-echo $BASE_REPO
-echo $NEW_REPO
-echo $BASE_PR_TITLE
-echo $BASE_PR_NUMBER
-echo $NEW_PR_TITLE
-
 NEW_PR_BODY=$(cat <<EOF
 #$BASE_PR_NUMBER のPRからSchemafileを切り出した対応です
 EOF
 )
-
-git fetch
-git checkout $BASE_REPO
+git checkout .
 
 cat db/Schemafile > db/Schemafile_backup
 
 git checkout main
-git pull
 git checkout -b $NEW_REPO
 
 cat db/Schemafile_backup > db/Schemafile

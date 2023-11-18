@@ -1,9 +1,9 @@
-name: Create PR to hoge on master PR
+name: Create PR to hoge on main PR
 
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   create-pr:
@@ -26,7 +26,7 @@ jobs:
         git commit -m 'Add new file to hoge branch'
 
     - name: Push changes
-      uses: ad-m/github-push-action@master
+      uses: ad-m/github-push-action@main
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: 'hoge'

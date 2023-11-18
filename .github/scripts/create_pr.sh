@@ -51,4 +51,4 @@ git config --global user.email '41898282+github-actions[bot]@users.noreply.githu
 git commit -m "Schemafile切り出し"
 git push origin $NEW_REPO
 
-gh pr create --assignee @me --base main --title "$NEW_PR_TITLE" --body "$NEW_PR_BODY"
+gh pr create --base main --title "$NEW_PR_TITLE" --body "$NEW_PR_BODY"

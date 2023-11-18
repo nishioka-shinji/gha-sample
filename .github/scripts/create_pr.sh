@@ -14,6 +14,12 @@ BASE_PR_TITLE="$2"
 BASE_PR_NUMBER="$3"
 NEW_PR_TITLE="${BASE_PR_TITLE}（Schemafile切り出し）"
 
+echo $BASE_REPO
+echo $NEW_REPO
+echo $BASE_PR_TITLE
+echo $BASE_PR_NUMBER
+echo $NEW_PR_TITLE
+
 read -d '' NEW_PR_BODY << EOF
 #$BASE_PR_NUMBER のPRからSchemafileを切り出した対応です
 EOF

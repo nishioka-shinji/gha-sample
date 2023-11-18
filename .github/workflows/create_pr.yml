@@ -1,10 +1,10 @@
-name: Create PR to hoge on main PR
-
+name: Create PR
 on:
   pull_request:
     branches:
       - main
-
+    types:
+      - opened
 jobs:
   create-pr:
     runs-on: ubuntu-latest
@@ -12,8 +12,7 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
-
-    - name: run
+    - name: Create pull request
       run: |
         chmod +x ./.github/scripts/create_pr.sh
         ./.github/scripts/create_pr.sh ${{ github.head_ref }} ${{ github.event.pull_request.title }} ${{ github.event.pull_request.number }}

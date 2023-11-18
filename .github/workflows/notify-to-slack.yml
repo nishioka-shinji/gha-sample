@@ -10,4 +10,4 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       run: |
-        ./scripts/slack_notify.sh $SLACK_WEBHOOK_URL "Hello, world!"
+        ./.github/scripts/slack_notify.sh $SLACK_WEBHOOK_URL "Hello, world!"

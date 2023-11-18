@@ -23,12 +23,7 @@ jobs:
         git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
         git add .
         git commit -m 'Add new file to hoge branch'
-
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: 'hoge'
+        git push -u origin hoge
 
     - name: Create Pull Request
       uses: repo-sync/pull-request@v2

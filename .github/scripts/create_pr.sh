@@ -19,7 +19,7 @@ NEW_PR_BODY=$(cat <<EOF
 EOF
 )
 
-git fetch
+git fetch origin main
 git checkout .
 
 cat db/Schemafile > db/Schemafile_backup

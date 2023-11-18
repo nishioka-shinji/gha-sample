@@ -27,6 +27,6 @@ jobs:
 
     - name: Create Pull Request
       run: |
-        gh pr create --assignee @me --base main --title "new" --body "new"
+        gh pr create --base main --title "new" --body "new"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

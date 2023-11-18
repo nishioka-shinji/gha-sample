@@ -18,25 +18,15 @@ NEW_PR_BODY=$(cat <<EOF
 EOF
 )
 
-BRANCH_IS_EXISTING=$(
-    git fetch origin $NEW_HEAD_REF &&
-    echo true ||
-    echo false
-)
-
 # 余計なdiffがあると、ブランチ切り替え時にエラーになるため、一旦全ての変更を破棄する
 git checkout .
 
 cat db/Schemafile > db/Schemafile_backup
 
-git fetch origin main
+git fetch
 git checkout main
-
-if [ "$BRANCH_IS_EXISTING" = true ]; then
-    git checkout $NEW_HEAD_REF
-else
-    git checkout -b $NEW_HEAD_REF
-fi
+git pull origin main
+git checkout -b $NEW_HEAD_REF
 
 cat db/Schemafile_backup > db/Schemafile
 

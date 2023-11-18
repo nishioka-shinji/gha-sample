@@ -18,6 +18,8 @@ NEW_PR_BODY=$(cat <<EOF
 #$BASE_PR_NUMBER のPRからSchemafileを切り出した対応です
 EOF
 )
+
+git fetch
 git checkout .
 
 cat db/Schemafile > db/Schemafile_backup

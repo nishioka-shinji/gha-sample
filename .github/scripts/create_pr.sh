@@ -24,6 +24,10 @@ BRANCH_IS_EXISTING=$(
     echo false
 )
 
+PR_LIST=$(
+    gh pr list --search "head:$NEW_HEAD_REF" --json headRefName --jq ".[] | select(.headRefName == \"$NEW_HEAD_REF\")"
+)
+
 # 余計なdiffがあると、ブランチ切り替え時にエラーになるため、一旦全ての変更を破棄する
 git checkout .
 
@@ -52,5 +56,11 @@ git config --global user.name 'github-actions[bot]'
 git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
 git commit -m "Schemafile切り出し"
 git push origin $NEW_HEAD_REF
+
+
+if [ -z "$PR_LIST" ]; then
+    echo "PR作成済み。処理を中断します。"
+    exit 0
+fi
 
 gh pr create --base main --title "$NEW_PR_TITLE" --body "$NEW_PR_BODY"

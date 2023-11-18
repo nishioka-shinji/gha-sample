@@ -29,6 +29,8 @@ PR_LIST=$(
 )
 
 echo $PR_LIST
+
+git branch --contains
 # 余計なdiffがあると、ブランチ切り替え時にエラーになるため、一旦全ての変更を破棄する
 git checkout .
 
@@ -36,6 +38,8 @@ cat db/Schemafile > db/Schemafile_backup
 
 git fetch origin main
 git checkout main
+
+git branch --contains
 
 if [ "$BRANCH_IS_EXISTING" = true ]; then
     git checkout $NEW_HEAD_REF

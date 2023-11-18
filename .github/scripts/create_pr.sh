@@ -36,6 +36,7 @@ git branch --contains
 # 余計なdiffがあると、ブランチ切り替え時にエラーになるため、一旦全ての変更を破棄する
 git checkout .
 
+cat db/Schemafile
 cat db/Schemafile > db/Schemafile_backup
 
 git fetch origin main
@@ -50,6 +51,7 @@ else
 fi
 
 cat db/Schemafile_backup > db/Schemafile
+cat db/Schemafile
 
 STATUS=$(git status db/Schemafile --porcelain)
 

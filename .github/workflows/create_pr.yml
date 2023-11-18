@@ -12,8 +12,6 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
-      with:
-        ref: 'hoge'
 
     - name: Create new file (Example)
       run: echo "New file for hoge branch" > hoge.txt

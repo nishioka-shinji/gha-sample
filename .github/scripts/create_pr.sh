@@ -20,7 +20,7 @@ fi
 
 cat db/Schemafile > db/Schemafile_backup
 
-git checkout master
+git checkout main
 git pull
 git checkout -b $NEW_REPO
 

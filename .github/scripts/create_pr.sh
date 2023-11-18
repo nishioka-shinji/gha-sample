@@ -50,8 +50,8 @@ else
     git checkout -b $NEW_HEAD_REF
 fi
 
-cat db/Schemafile_backup > db/Schemafile
 cat db/Schemafile
+cat db/Schemafile_backup > db/Schemafile
 
 STATUS=$(git status db/Schemafile --porcelain)
 
